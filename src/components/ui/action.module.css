@@ -1,0 +1,40 @@
+.action {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.1rem;
+  border: 0.125rem solid transparent;
+  border-radius: var(--radius-small);
+  font: inherit;
+  font-weight: var(--font-strong);
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.primary {
+  color: var(--color-on-action);
+  background: var(--color-action);
+}
+
+.secondary {
+  color: var(--color-action);
+  border-color: var(--color-border);
+  background: var(--color-surface);
+}
+
+.action:hover {
+  color: var(--color-on-action);
+  background: var(--color-action-hover);
+}
+
+.action:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.newWindow {
+  font-size: 0.75em;
+}

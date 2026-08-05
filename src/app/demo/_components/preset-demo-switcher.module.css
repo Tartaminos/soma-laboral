@@ -1,0 +1,88 @@
+.switcher {
+  position: fixed;
+  z-index: 90;
+  inset-block-end: max(var(--space-3), env(safe-area-inset-bottom));
+  inset-inline-end: max(var(--space-3), env(safe-area-inset-right));
+  display: grid;
+  justify-items: end;
+  gap: var(--space-2);
+}
+
+.trigger {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0;
+  place-items: center;
+  color: var(--color-on-action);
+  background: var(--color-action);
+  border: 0.125rem solid var(--color-on-action);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.trigger:hover {
+  background: var(--color-action-hover);
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.panel {
+  width: min(18rem, calc(100vw - 2 * var(--space-3)));
+  padding: var(--space-3);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 0.0625rem solid var(--color-border);
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow);
+}
+
+.title {
+  margin-block-end: var(--space-2);
+  font-family: var(--font-display);
+  font-weight: var(--font-strong);
+}
+
+.options {
+  display: grid;
+  gap: var(--space-1);
+  padding: 0;
+  list-style: none;
+}
+
+.option {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  color: var(--color-text);
+  border-radius: var(--radius-small);
+  text-decoration: none;
+}
+
+.option:hover {
+  background: var(--color-background-alt);
+}
+
+.option[aria-current="page"] {
+  font-weight: var(--font-strong);
+  background: var(--color-background-alt);
+  box-shadow: inset 0 0 0 0.125rem var(--color-action);
+}
+
+.current {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  font-weight: var(--font-normal);
+}

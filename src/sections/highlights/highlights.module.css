@@ -1,0 +1,11 @@
+.inlineItem {
+  padding-inline-start: var(--space-3);
+  border-inline-start: 0.25rem solid var(--color-action);
+}
+
+.cardList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-4);
+  list-style: none;
+}

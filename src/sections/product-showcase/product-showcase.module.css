@@ -1,0 +1,5 @@
+.commercial {
+  margin-block-start: var(--space-3);
+  color: var(--color-action);
+  font-weight: var(--font-strong);
+}

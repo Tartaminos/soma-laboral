@@ -1,0 +1,34 @@
+.heading {
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-weight: var(--font-strong);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.small {
+  font-size: var(--font-size-2);
+}
+
+.medium {
+  font-size: var(--font-size-3);
+}
+
+.large {
+  font-size: var(--font-size-4);
+}
+
+.display {
+  font-size: var(--font-size-5);
+}
+
+.text {
+  max-width: 68ch;
+  font-size: var(--font-size-1);
+  line-height: 1.7;
+}
+
+.muted {
+  color: var(--color-text-muted);
+}

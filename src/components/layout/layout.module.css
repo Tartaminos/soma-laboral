@@ -1,0 +1,77 @@
+.container {
+  width: min(100% - 2rem, var(--content-width));
+  margin-inline: auto;
+}
+
+.wideSize {
+  width: min(100% - 2rem, 84rem);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--grid-min)), 1fr));
+}
+
+.small {
+  gap: var(--space-2);
+}
+
+.medium {
+  gap: var(--space-4);
+}
+
+.large {
+  gap: var(--space-7);
+}
+
+.start {
+  align-items: flex-start;
+}
+
+.center {
+  align-items: center;
+}
+
+.end {
+  align-items: flex-end;
+}
+
+.minimumNarrow {
+  --grid-min: 12rem;
+}
+
+.minimumRegular {
+  --grid-min: 16rem;
+}
+
+.minimumWide {
+  --grid-min: 24rem;
+}
+
+.section {
+  scroll-margin-block-start: 1rem;
+  padding-block: clamp(3.5rem, 8vw, 7rem);
+}
+
+.default {
+  background: var(--color-background);
+}
+
+.alternate {
+  background: var(--color-background-alt);
+}
+
+.contrast {
+  color: var(--color-on-action);
+  background: var(--color-action);
+}

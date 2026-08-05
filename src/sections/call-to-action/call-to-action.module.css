@@ -1,0 +1,17 @@
+.content {
+  display: grid;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.panel {
+  padding: var(--space-5);
+  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  border-radius: var(--radius-large);
+}
+
+@media (min-width: 48rem) {
+  .banner {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}

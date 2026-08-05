@@ -1,0 +1,6 @@
+.paragraph {
+  max-width: 68ch;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-1);
+  line-height: 1.75;
+}

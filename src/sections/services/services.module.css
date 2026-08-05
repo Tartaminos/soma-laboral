@@ -1,0 +1,4 @@
+.description {
+  margin-block-start: var(--space-3);
+  color: var(--color-text-muted);
+}

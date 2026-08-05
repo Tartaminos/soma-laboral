@@ -1,0 +1,12 @@
+.hero {
+  min-height: min(46rem, calc(100svh - 5rem));
+  display: grid;
+  align-items: center;
+}
+
+.eyebrow {
+  color: var(--color-action);
+  font-weight: var(--font-strong);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
