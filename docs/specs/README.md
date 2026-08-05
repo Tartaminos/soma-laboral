@@ -48,6 +48,7 @@ Uma implementação não pode alterar silenciosamente a arquitetura ou o guideli
 | 15 | [Documentação para criação de um novo cliente](./15-new-client-documentation.md) | 01–14 | Sim | Concluída |
 | 16 | [Investigação da resolução de presets e seletor de demonstração](./16-preset-resolution-demo-switcher.md) | 01–15 | Sim | Concluída |
 | 17 | [Seção reutilizável de portfólio visual](./17-portfolio-section.md) | 02, 05–08, 10, 12–16 | Sim | Concluída |
+| 18 | [Implementação da SPA da Soma Laboral](./18-soma-laboral-client-implementation.md) | 01–17 | Sim | Pendente |
 
 ## Mapa resumido de contratos
 
@@ -65,6 +66,7 @@ Uma implementação não pode alterar silenciosamente a arquitetura ou o guideli
 - A spec 15 documenta o fluxo operacional de criação, configuração, validação e publicação de um cliente.
 - A spec 16 investiga a seleção atual de preset e adiciona páginas estáticas de demonstração com um seletor cliente mínimo.
 - A spec 17 adiciona um portfólio visual tipado e opcional aos presets de serviços e profissional, sem criar preset de nicho ou galeria dinâmica.
+- A spec 18 configura o template para a Soma Laboral, define conteúdo, composição, identidade, conversão por WhatsApp, links sociais por ícone e limites explícitos de densidade visual.
 
 ## Status oficial
 
@@ -72,4 +74,5 @@ Todas as specs deste diretório possuem status **Aprovada para implementação**
 
 No estado atual deste índice:
 
-- specs 01–17: implementação concluída.
+- specs 01–17: implementação concluída;
+- spec 18: implementação pendente.
