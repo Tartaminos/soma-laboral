@@ -1,19 +1,24 @@
 import { SectionShell, Stack } from "@/components/layout/layout";
+import { ActionLink } from "@/components/ui/action-link";
 import type { ContactSection as ContactSectionProps } from "@/domain/sections";
 import { SectionHeading } from "@/sections/shared/section-heading";
 
+import { SocialIcon } from "./social-icons";
 import shared from "@/sections/shared/sections.module.css";
 import styles from "./contact.module.css";
 
 export function ContactSection({
+  action,
   address,
   channels,
   description,
   id,
   openingHours,
+  socialLinks = [],
   title,
   variant,
 }: ContactSectionProps) {
+  const hasDetails = channels.length > 0 || Boolean(address);
   const details = (
     <Stack gap="medium">
       {channels.length > 0 ? (
@@ -58,19 +63,41 @@ export function ContactSection({
 
   return (
     <SectionShell id={id} surface="alternate">
-      <Stack gap="large">
+      <Stack className={styles.content} gap="large">
         <SectionHeading description={description} title={title} />
-        {variant === "split" ? (
+        {action || socialLinks.length > 0 ? (
+          <div className={styles.actions}>
+            {action ? <ActionLink action={action} /> : null}
+            {socialLinks.length > 0 ? (
+              <ul className={styles.socialList}>
+                {socialLinks.map((socialLink) => (
+                  <li key={socialLink.id}>
+                    <a
+                      aria-label={socialLink.label}
+                      className={styles.socialLink}
+                      href={socialLink.href}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <SocialIcon id={socialLink.id} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        ) : null}
+        {variant === "split" && hasDetails && hours ? (
           <div className={shared.split}>
             {details}
             {hours}
           </div>
-        ) : (
+        ) : hasDetails || hours ? (
           <Stack gap="medium">
-            {details}
+            {hasDetails ? details : null}
             {hours}
           </Stack>
-        )}
+        ) : null}
       </Stack>
     </SectionShell>
   );

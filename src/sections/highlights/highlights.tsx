@@ -29,7 +29,7 @@ export function HighlightsSection({
   ));
 
   return (
-    <SectionShell id={id} surface="alternate">
+    <SectionShell id={id}>
       <Stack gap="large">
         <SectionHeading title={title} />
         {variant === "cards" ? (

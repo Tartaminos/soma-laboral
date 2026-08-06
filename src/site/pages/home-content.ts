@@ -1,28 +1,127 @@
 import type { NavigationItem } from "@/domain/content";
-import type { SectionContentEntry } from "@/domain/sections";
+import type { PageSection, SectionContentEntry } from "@/domain/sections";
 import type { PresetId } from "@/domain/site";
 import { brandLogo } from "@/site/assets/brand";
 import {
-  address,
   business,
   contactChannels,
   openingHours,
+  socialLinks,
 } from "@/site/business/business";
 import { primaryContactAction } from "@/site/content/actions";
 import {
   aboutParagraphs,
   highlights,
-  testimonials,
 } from "@/site/content/editorial";
 import { products } from "@/site/content/products";
 import { professional } from "@/site/content/profile";
 import { portfolioItems } from "@/site/content/portfolio";
 import { services } from "@/site/content/services";
 
-const baseNavigation = [
-  { id: "highlights-link", label: "Diferenciais", href: "#highlights" },
+const primaryNavigation = [
+  { id: "services-link", label: "Serviços", href: "#services" },
+  {
+    id: "highlights-link",
+    label: "Como trabalhamos",
+    href: "#how-we-work",
+  },
+  ...(portfolioItems.length > 0
+    ? [
+        {
+          id: "portfolio-link",
+          label: "Soma em ação",
+          href: "#portfolio",
+        },
+      ]
+    : []),
   { id: "contact-link", label: "Contato", href: "#contact" },
 ] as const satisfies readonly NavigationItem[];
+
+const heroActions = primaryContactAction ? [primaryContactAction] : [];
+
+export function createSomaHomeSections(): readonly PageSection[] {
+  return [
+    {
+      id: "header",
+      type: "site-header",
+      variant: "standard",
+      businessName: business.name,
+      logo: brandLogo,
+      navigation: primaryNavigation,
+    },
+    {
+      id: "home",
+      type: "hero",
+      variant: "centered",
+      eyebrow: "Cuidado com quem faz a empresa acontecer",
+      title: "Bem-estar no trabalho começa com atenção às pessoas.",
+      description:
+        "A Soma Laboral leva Ginástica Laboral, Quick Massage e ações para SIPAT até a sua empresa, com atividades pensadas para a rotina e as necessidades de cada equipe.",
+      actions: heroActions,
+    },
+    {
+      id: "services",
+      type: "services",
+      variant: "featured",
+      isNavigable: true,
+      title: "Cuidado que cabe na rotina da sua empresa",
+      description:
+        "As atividades são organizadas de acordo com o número de colaboradores, os setores, os horários e a frequência necessária.",
+      items: services,
+      featuredServiceId: "workplace-exercise",
+    },
+    {
+      id: "how-we-work",
+      type: "highlights",
+      variant: "cards",
+      isNavigable: true,
+      title: "Um atendimento que olha para a equipe como um todo",
+      items: highlights,
+    },
+    ...(portfolioItems.length > 0
+      ? [
+          {
+            id: "portfolio",
+            type: "portfolio" as const,
+            variant: "grid" as const,
+            isNavigable: true,
+            title: "Soma em ação",
+            description: "Um pouco do trabalho realizado junto às equipes.",
+            items: portfolioItems,
+          },
+        ]
+      : []),
+    {
+      id: "about",
+      type: "about",
+      variant: "text",
+      title: "Sobre a Soma Laboral",
+      paragraphs: aboutParagraphs,
+    },
+    {
+      id: "contact",
+      type: "contact",
+      variant: "compact",
+      isNavigable: true,
+      title: "Vamos entender a rotina da sua empresa",
+      description:
+        "Para preparar uma proposta mais adequada, conte quantos colaboradores e setores serão atendidos, os melhores horários e quantas vezes por semana você imagina realizar as atividades.",
+      action: primaryContactAction,
+      channels: contactChannels,
+      socialLinks,
+      openingHours,
+    },
+    {
+      id: "footer",
+      type: "site-footer",
+      variant: "compact",
+      businessName: business.name,
+      description: "Ginástica Laboral, Quick Massage e SIPAT",
+      navigation: primaryNavigation,
+      channels: [],
+    },
+  ];
+}
 
 function buildSharedContent(navigation: readonly NavigationItem[]) {
   return {
@@ -32,58 +131,45 @@ function buildSharedContent(navigation: readonly NavigationItem[]) {
       businessName: business.name,
       logo: brandLogo,
       navigation,
-      action: primaryContactAction,
     },
     hero: {
       id: "home",
       type: "hero",
-      eyebrow: "Atendimento próximo e responsável",
-      title: "Clareza para escolher. Cuidado para realizar.",
+      eyebrow: "Cuidado com quem faz a empresa acontecer",
+      title: "Bem-estar no trabalho começa com atenção às pessoas.",
       description: business.shortDescription,
-      actions: [primaryContactAction],
+      actions: heroActions,
     },
     highlights: {
       id: "highlights",
       type: "highlights",
-      title: "O que orienta nosso trabalho",
+      title: "Um atendimento que olha para a equipe como um todo",
       items: highlights,
     },
     about: {
       id: "about",
       type: "about",
-      title: "Sobre o Estúdio",
+      title: "Sobre a Soma Laboral",
       paragraphs: aboutParagraphs,
-    },
-    testimonials: {
-      id: "testimonials",
-      type: "testimonials",
-      title: "Experiências de quem já trabalhou conosco",
-      items: testimonials,
-      featuredTestimonialId: "marina",
     },
     contact: {
       id: "contact",
       type: "contact",
-      title: "Vamos conversar",
-      description: "Escolha o canal mais conveniente para você.",
-      channels: contactChannels,
-      address,
-      openingHours,
-    },
-    cta: {
-      id: "cta",
-      type: "call-to-action",
-      title: "Pronto para dar o próximo passo?",
-      description: "Conte brevemente o que você precisa.",
+      title: "Vamos entender a rotina da sua empresa",
+      description:
+        "Para preparar uma proposta mais adequada, conte quantos colaboradores e setores serão atendidos, os melhores horários e quantas vezes por semana você imagina realizar as atividades.",
       action: primaryContactAction,
+      channels: contactChannels,
+      socialLinks,
+      openingHours,
     },
     footer: {
       id: "footer",
       type: "site-footer",
       businessName: business.name,
-      description: business.shortDescription,
+      description: "Ginástica Laboral, Quick Massage e SIPAT",
       navigation,
-      channels: contactChannels,
+      channels: [],
     },
   } as const;
 }
@@ -95,9 +181,13 @@ export function createHomeContent(
     case "services": {
       const navigation = [
         { id: "services-link", label: "Serviços", href: "#services" },
-        { id: "portfolio-link", label: "Portfólio", href: "#portfolio" },
+        {
+          id: "highlights-link",
+          label: "Como trabalhamos",
+          href: "#highlights",
+        },
         { id: "about-link", label: "Sobre", href: "#about" },
-        ...baseNavigation,
+        { id: "contact-link", label: "Contato", href: "#contact" },
       ] as const satisfies readonly NavigationItem[];
       const shared = buildSharedContent(navigation);
       return [
@@ -106,33 +196,35 @@ export function createHomeContent(
         {
           id: "services",
           type: "services",
-          title: "Como podemos ajudar",
-          description: "Serviços pensados para diferentes momentos do seu negócio.",
-          items: services,
-          featuredServiceId: "planning",
-        },
-        {
-          id: "portfolio",
-          type: "portfolio",
-          title: "Trabalhos selecionados",
+          title: "Cuidado que cabe na rotina da sua empresa",
           description:
-            "Uma amostra fictícia de projetos para demonstrar diferentes formatos de imagem.",
-          items: portfolioItems,
-          action: primaryContactAction,
+            "As atividades são organizadas de acordo com o número de colaboradores, os setores, os horários e a frequência necessária.",
+          items: services,
+          featuredServiceId: "workplace-exercise",
         },
+        ...(portfolioItems.length > 0
+          ? [
+              {
+                id: "portfolio",
+                type: "portfolio" as const,
+                title: "Soma em ação",
+                description: "Um pouco do trabalho realizado junto às equipes.",
+                items: portfolioItems,
+              },
+            ]
+          : []),
         shared.highlights,
         shared.about,
-        shared.testimonials,
         shared.contact,
-        shared.cta,
         shared.footer,
       ];
     }
     case "commerce": {
       const navigation = [
         { id: "products-link", label: "Produtos", href: "#products" },
+        { id: "highlights-link", label: "Diferenciais", href: "#highlights" },
         { id: "about-link", label: "Sobre", href: "#about" },
-        ...baseNavigation,
+        { id: "contact-link", label: "Contato", href: "#contact" },
       ] as const satisfies readonly NavigationItem[];
       const shared = buildSharedContent(navigation);
       return [
@@ -149,7 +241,6 @@ export function createHomeContent(
         shared.highlights,
         shared.about,
         shared.contact,
-        shared.cta,
         shared.footer,
       ];
     }
@@ -157,8 +248,8 @@ export function createHomeContent(
       const navigation = [
         { id: "profile-link", label: "Perfil", href: "#profile" },
         { id: "services-link", label: "Serviços", href: "#services" },
-        { id: "portfolio-link", label: "Portfólio", href: "#portfolio" },
-        ...baseNavigation,
+        { id: "highlights-link", label: "Diferenciais", href: "#highlights" },
+        { id: "contact-link", label: "Contato", href: "#contact" },
       ] as const satisfies readonly NavigationItem[];
       const shared = buildSharedContent(navigation);
       return [
@@ -176,20 +267,8 @@ export function createHomeContent(
           title: "Áreas de atuação",
           items: services,
         },
-        {
-          id: "portfolio",
-          type: "portfolio",
-          title: "Projetos em destaque",
-          description:
-            "Trabalhos fictícios apresentados para demonstrar a composição profissional.",
-          items: portfolioItems,
-          featuredPortfolioItemId: "custom-shelving",
-          action: primaryContactAction,
-        },
         shared.highlights,
-        shared.testimonials,
         shared.contact,
-        shared.cta,
         shared.footer,
       ];
     }

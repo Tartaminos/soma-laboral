@@ -1,11 +1,21 @@
 .hero {
-  min-height: min(46rem, calc(100svh - 5rem));
   display: grid;
+  min-height: min(42rem, calc(100svh - 5rem));
   align-items: center;
 }
 
+.hero h1 {
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.hero h1 + p {
+  max-width: 62ch;
+}
+
 .eyebrow {
-  color: var(--color-action);
+  color: var(--color-focus);
+  font-size: 0.82rem;
   font-weight: var(--font-strong);
   letter-spacing: 0.08em;
   text-transform: uppercase;

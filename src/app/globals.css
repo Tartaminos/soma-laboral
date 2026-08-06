@@ -51,6 +51,10 @@ a {
   text-underline-offset: 0.2em;
 }
 
+a:visited {
+  color: var(--color-action);
+}
+
 a:hover {
   text-decoration-thickness: 0.15em;
 }
@@ -73,6 +77,10 @@ a:hover {
 
 .skipLink:focus {
   transform: translateY(0);
+}
+
+.skipLink:visited {
+  color: var(--color-on-action);
 }
 
 @media (prefers-reduced-motion: reduce) {

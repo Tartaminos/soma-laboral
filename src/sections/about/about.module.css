@@ -1,6 +1,10 @@
 .paragraph {
-  max-width: 68ch;
+  max-width: 62ch;
   color: var(--color-text-muted);
   font-size: var(--font-size-1);
   line-height: 1.75;
+}
+
+.paragraph + .paragraph {
+  margin-block-start: calc(var(--space-2) * -1);
 }

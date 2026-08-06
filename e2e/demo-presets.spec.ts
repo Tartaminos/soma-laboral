@@ -81,43 +81,13 @@ test("switches presets with links, closes on Escape and fits at 320px", async ({
   expect(hasOverflow).toBe(false);
 });
 
-for (const presetId of ["services", "professional"] as const) {
-  test(`${presetId} portfolio is navigable and loads every local image`, async ({
+for (const presetId of ["services", "commerce", "professional"] as const) {
+  test(`${presetId} omits the portfolio while authorized media is pending`, async ({
     page,
   }) => {
-    await page.setViewportSize({ width: 320, height: 800 });
     await page.goto(`/demo/${presetId}/`);
 
-    await page.getByRole("link", { name: "Portfólio" }).first().click();
-    await expect(page.locator("#portfolio")).toBeInViewport();
-
-    const images = page.locator("#portfolio img");
-    await expect(images).toHaveCount(3);
-    for (let index = 0; index < (await images.count()); index += 1) {
-      await expect
-        .poll(() =>
-          images.nth(index).evaluate(
-            (image) =>
-              image instanceof HTMLImageElement &&
-              image.complete &&
-              image.naturalWidth > 0,
-          ),
-        )
-        .toBe(true);
-    }
-
-    const hasOverflow = await page.evaluate(
-      () =>
-        document.documentElement.scrollWidth >
-        document.documentElement.clientWidth,
-    );
-    expect(hasOverflow).toBe(false);
+    await expect(page.locator("#portfolio")).toHaveCount(0);
+    await expect(page.getByRole("link", { name: "Portfólio" })).toHaveCount(0);
   });
 }
-
-test("commerce demo does not include portfolio", async ({ page }) => {
-  await page.goto("/demo/commerce/");
-
-  await expect(page.locator("#portfolio")).toHaveCount(0);
-  await expect(page.getByRole("link", { name: "Portfólio" })).toHaveCount(0);
-});

@@ -1,5 +1,6 @@
 .header {
-  position: relative;
+  position: sticky;
+  inset-block-start: 0;
   z-index: 10;
   border-block-end: 1px solid var(--color-border);
   background: color-mix(in srgb, var(--color-background) 94%, transparent);
@@ -24,6 +25,10 @@
   text-decoration: none;
 }
 
+.brand:visited {
+  color: var(--color-text);
+}
+
 .brand span {
   overflow-wrap: anywhere;
 }
@@ -39,6 +44,23 @@
   flex-direction: column;
   gap: var(--space-3);
   list-style: none;
+}
+
+.navigationList a {
+  color: var(--color-text);
+  font-weight: var(--font-strong);
+  text-decoration: none;
+}
+
+.navigationList a:visited {
+  color: var(--color-text);
+}
+
+.navigationList a:hover {
+  color: var(--color-action-hover);
+  text-decoration: underline;
+  text-decoration-color: var(--color-focus);
+  text-underline-offset: 0.35em;
 }
 
 .desktopNavigation,
@@ -67,6 +89,10 @@
   border-block: 1px solid var(--color-border);
   background: var(--color-background);
   box-shadow: var(--shadow);
+}
+
+.mobileNavigation {
+  margin-inline-start: auto;
 }
 
 @media (min-width: 52rem) {

@@ -59,7 +59,7 @@
 }
 
 .section {
-  scroll-margin-block-start: 1rem;
+  scroll-margin-block-start: 6rem;
   padding-block: clamp(3.5rem, 8vw, 7rem);
 }
 

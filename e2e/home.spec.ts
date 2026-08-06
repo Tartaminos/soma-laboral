@@ -11,7 +11,7 @@ test("renders the static home, navigation and structured data", async ({
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: "Clareza para escolher. Cuidado para realizar.",
+      name: "Bem-estar no trabalho começa com atenção às pessoas.",
     }),
   ).toBeVisible();
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
@@ -23,6 +23,8 @@ test("renders the static home, navigation and structured data", async ({
   );
   await page.getByRole("link", { name: "Serviços" }).first().click();
   await expect(page.locator("#services")).toBeInViewport();
+  await expect(page.getByText("Estúdio Horizonte")).toHaveCount(0);
+  await expect(page.locator("#testimonials, #cta")).toHaveCount(0);
   expect(runtimeErrors).toEqual([]);
 });
 

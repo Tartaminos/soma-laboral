@@ -1,4 +1,9 @@
-import type { Address, ContactChannel, OpeningHours } from "@/domain/business";
+import type {
+  Address,
+  ContactChannel,
+  OpeningHours,
+  SocialLink,
+} from "@/domain/business";
 import type {
   Action,
   Highlight,
@@ -98,7 +103,9 @@ export interface ContactSection extends SectionBase {
   readonly variant: "split" | "compact";
   readonly title: string;
   readonly description?: string;
+  readonly action?: Action;
   readonly channels: readonly ContactChannel[];
+  readonly socialLinks?: readonly SocialLink[];
   readonly address?: Address;
   readonly openingHours: readonly OpeningHours[];
 }

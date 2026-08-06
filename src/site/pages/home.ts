@@ -1,12 +1,12 @@
 import type { PageSource } from "@/domain/pages";
-import { siteSettings } from "@/site/config/site-settings";
-import { createHomeContent } from "@/site/pages/home-content";
+import { createSomaHomeSections } from "@/site/pages/home-content";
 
 export const homePageSource = {
   id: "home",
   route: "/",
   title: "Início",
-  content: createHomeContent(siteSettings.presetId),
+  content: [],
+  explicitSections: createSomaHomeSections(),
   seo: {
     isIndexable: true,
   },

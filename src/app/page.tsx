@@ -8,11 +8,7 @@ import {
 import { resolvePreset } from "@/presets/resolve-preset";
 import { site } from "@/site";
 import { brandLogo } from "@/site/assets/brand";
-import {
-  address,
-  openingHours,
-  socialLinks,
-} from "@/site/business/business";
+import { openingHours, socialLinks } from "@/site/business/business";
 import { homePageSource } from "@/site/pages/home";
 
 export default function Home() {
@@ -21,10 +17,9 @@ export default function Home() {
     resolvePreset(site.settings.presetId),
   );
   const structuredData = createStructuredData({
-    address,
     baseUrl: site.settings.baseUrl,
     business: site.business,
-    logoPath: brandLogo.src,
+    logoPath: brandLogo?.src,
     openingHours,
     sameAs: socialLinks,
     type: site.seo.structuredDataType,

@@ -17,6 +17,6 @@ export interface BusinessIdentity {
   readonly id: string;
   readonly name: string;
   readonly shortDescription: string;
-  readonly email: string;
-  readonly phone: string;
+  readonly email?: string;
+  readonly phone?: string;
 }

@@ -9,3 +9,18 @@
   gap: var(--space-4);
   list-style: none;
 }
+
+.cardList > li {
+  position: relative;
+}
+
+.cardList > li::before {
+  position: absolute;
+  inset-block-start: var(--space-4);
+  inset-inline-start: 0;
+  width: 0.2rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  background: var(--color-focus);
+  content: "";
+}

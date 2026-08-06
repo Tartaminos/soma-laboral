@@ -1,19 +1,10 @@
 import type { Professional } from "@/domain/content";
 
 export const professional: Professional = {
-  id: "ana-horizonte",
-  name: "Ana Horizonte",
-  role: "Consultora especialista",
+  id: "soma-laboral",
+  name: "Soma Laboral",
+  role: "Atendimento de saúde e bem-estar em empresas",
   biography:
-    "Ana combina experiência prática e escuta atenta para transformar situações complexas em caminhos objetivos.",
-  credentials: [
-    {
-      id: "experience",
-      title: "Mais de 10 anos de experiência",
-    },
-    {
-      id: "specialization",
-      title: "Especialização em atendimento consultivo",
-    },
-  ],
+    "Atividades conduzidas de forma próxima, responsável e adaptada à rotina de cada empresa.",
+  credentials: [],
 };

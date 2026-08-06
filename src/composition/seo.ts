@@ -79,6 +79,16 @@ export function createStructuredData({
   sameAs,
   type,
 }: StructuredDataInput) {
+  const openingHoursSpecification = openingHours
+    .filter((entry) => !entry.isClosed)
+    .map((entry) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: entry.days,
+      opens: entry.opens,
+      closes: entry.closes,
+    }));
+  const socialProfiles = sameAs.map((link) => link.href);
+
   return {
     "@context": "https://schema.org",
     "@type": type,
@@ -99,15 +109,11 @@ export function createStructuredData({
           addressCountry: address.country,
         }
       : undefined,
-    openingHoursSpecification: openingHours
-      .filter((entry) => !entry.isClosed)
-      .map((entry) => ({
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: entry.days,
-        opens: entry.opens,
-        closes: entry.closes,
-      })),
-    sameAs: sameAs.map((link) => link.href),
+    openingHoursSpecification:
+      openingHoursSpecification.length > 0
+        ? openingHoursSpecification
+        : undefined,
+    sameAs: socialProfiles.length > 0 ? socialProfiles : undefined,
   };
 }
 

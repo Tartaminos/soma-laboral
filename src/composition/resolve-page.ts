@@ -209,9 +209,6 @@ function resolveSection(
       };
     case "contact":
       if (content.type !== "contact") throw new Error("Unreachable section mismatch.");
-      if (content.channels.length === 0 && !content.address) {
-        throw new Error(`Section "${content.id}" requires contact information.`);
-      }
       return { ...content, variant: blueprint.variant, isNavigable: blueprint.isNavigable };
     case "call-to-action":
       if (content.type !== "call-to-action") throw new Error("Unreachable section mismatch.");

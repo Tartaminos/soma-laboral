@@ -4,7 +4,7 @@ import { resolveDemoPage } from "@/app/demo/_lib/resolve-demo-page";
 
 const expectations = {
   services: {
-    included: ["services", "portfolio"],
+    included: ["services"],
     excluded: ["product-showcase", "professional-profile"],
   },
   commerce: {
@@ -12,7 +12,7 @@ const expectations = {
     excluded: ["services", "professional-profile"],
   },
   professional: {
-    included: ["professional-profile", "services", "portfolio"],
+    included: ["professional-profile", "services"],
     excluded: ["product-showcase"],
   },
 } as const;

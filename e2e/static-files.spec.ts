@@ -1,12 +1,11 @@
 import { expect, test } from "@playwright/test";
 
-test("exports robots, sitemap, brand asset and a real 404", async ({
+test("exports robots, sitemap, preset demos and a real 404", async ({
   request,
 }) => {
   for (const path of [
     "/robots.txt",
     "/sitemap.xml",
-    "/brand/brand-mark.svg",
     "/demo/services/",
     "/demo/commerce/",
     "/demo/professional/",

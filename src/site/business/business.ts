@@ -1,64 +1,18 @@
-import type {
-  Address,
-  ContactChannel,
-  OpeningHours,
-  SocialLink,
-} from "@/domain/business";
+import type { ContactChannel, OpeningHours, SocialLink } from "@/domain/business";
 import type { BusinessIdentity } from "@/domain/site";
 
+// O número será publicado aqui somente depois da confirmação do WhatsApp oficial.
+export const whatsappPhone: string | undefined = undefined;
+
 export const business = {
-  id: "estudio-horizonte",
-  name: "Estúdio Horizonte",
+  id: "soma-laboral",
+  name: "Soma Laboral",
   shortDescription:
-    "Soluções claras e cuidadosas para negócios que valorizam relações duradouras.",
-  email: "contato@example.com",
-  phone: "+55 11 4000-1234",
+    "Ginástica Laboral, Quick Massage e ações para SIPAT pensadas para a rotina de cada equipe.",
+  phone: whatsappPhone,
 } as const satisfies BusinessIdentity;
 
-export const address = {
-  street: "Rua das Palmeiras",
-  number: "100",
-  district: "Centro",
-  city: "São Paulo",
-  region: "SP",
-  postalCode: "01000-000",
-  country: "BR",
-} as const satisfies Address;
-
-export const contactChannels = [
-  {
-    type: "phone",
-    label: "Telefone",
-    value: business.phone,
-    href: "tel:+551140001234",
-  },
-  {
-    type: "email",
-    label: "E-mail",
-    value: business.email,
-    href: `mailto:${business.email}`,
-  },
-] as const satisfies readonly ContactChannel[];
-
-export const openingHours = [
-  {
-    id: "weekdays",
-    days: ["Segunda a sexta"],
-    isClosed: false,
-    opens: "09:00",
-    closes: "18:00",
-  },
-  {
-    id: "weekend",
-    days: ["Sábado e domingo"],
-    isClosed: true,
-  },
-] as const satisfies readonly OpeningHours[];
-
-export const socialLinks = [
-  {
-    id: "instagram",
-    label: "Instagram",
-    href: "https://www.instagram.com/",
-  },
-] as const satisfies readonly SocialLink[];
+// Contato, região e horários permanecem ausentes até a confirmação dos dados oficiais.
+export const contactChannels = [] as const satisfies readonly ContactChannel[];
+export const openingHours = [] as const satisfies readonly OpeningHours[];
+export const socialLinks = [] as const satisfies readonly SocialLink[];

@@ -28,8 +28,12 @@ export function validateSiteConfiguration(
   requireText("business.id", identity.id);
   requireText("business.name", identity.name);
   requireText("business.shortDescription", identity.shortDescription);
-  requireText("business.email", identity.email);
-  requireText("business.phone", identity.phone);
+  if (identity.email !== undefined) {
+    requireText("business.email", identity.email);
+  }
+  if (identity.phone !== undefined) {
+    requireText("business.phone", identity.phone);
+  }
 
   if (!PRESET_IDS.includes(settings.presetId)) {
     throw new Error(`site.presetId "${settings.presetId}" is not supported.`);

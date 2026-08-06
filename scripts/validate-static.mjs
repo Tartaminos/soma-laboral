@@ -7,10 +7,6 @@ const requiredFiles = [
   "404.html",
   "robots.txt",
   "sitemap.xml",
-  "brand/brand-mark.svg",
-  "images/portfolio/estante-sob-medida.webp",
-  "images/portfolio/jardim-de-patio.webp",
-  "images/portfolio/colecao-de-bolos.webp",
   "demo/services/index.html",
   "demo/commerce/index.html",
   "demo/professional/index.html",
@@ -28,6 +24,7 @@ for (const expected of [
   'rel="canonical"',
   'type="application/ld+json"',
   'id="main-content"',
+  "Soma Laboral",
 ]) {
   if (!html.includes(expected)) {
     throw new Error(`Static home does not include ${expected}.`);
@@ -39,9 +36,9 @@ if (html.includes("Alternar preset de demonstração")) {
 }
 
 const demoExpectations = {
-  services: ['id="services"', 'id="portfolio"'],
+  services: ['id="services"'],
   commerce: ['id="products"'],
-  professional: ['id="profile"', 'id="portfolio"'],
+  professional: ['id="profile"'],
 };
 
 for (const [presetId, expectedSections] of Object.entries(demoExpectations)) {

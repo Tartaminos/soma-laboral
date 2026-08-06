@@ -1,40 +1,27 @@
-import type { Highlight, Testimonial } from "@/domain/content";
+import type { Highlight } from "@/domain/content";
 
 export const highlights = [
   {
-    id: "clarity",
-    title: "Clareza",
-    description: "Você entende cada etapa, escolha e próximo passo.",
+    id: "listen-first",
+    title: "Escuta antes da atividade",
+    description:
+      "A proposta começa entendendo a rotina, os setores e as necessidades das pessoas que serão atendidas.",
   },
   {
-    id: "care",
-    title: "Cuidado",
-    description: "Cada necessidade é tratada em seu contexto real.",
+    id: "company-routine",
+    title: "Planejamento para a realidade da empresa",
+    description:
+      "Horários, frequência e formato são organizados para que a atividade faça sentido no dia a dia da equipe.",
   },
   {
-    id: "consistency",
-    title: "Consistência",
-    description: "Processos simples ajudam a sustentar bons resultados.",
+    id: "whole-person-care",
+    title: "Cuidado além do procedimento",
+    description:
+      "O trabalho considera o bem-estar físico e a experiência dos colaboradores, com uma condução próxima e respeitosa.",
   },
 ] as const satisfies readonly Highlight[];
 
-export const testimonials = [
-  {
-    id: "marina",
-    author: "Marina S.",
-    quote:
-      "Encontramos uma direção clara e um acompanhamento muito cuidadoso do início ao fim.",
-    context: "Cliente",
-  },
-  {
-    id: "ricardo",
-    author: "Ricardo M.",
-    quote: "O trabalho foi objetivo, organizado e fácil de acompanhar.",
-    context: "Cliente",
-  },
-] as const satisfies readonly Testimonial[];
-
 export const aboutParagraphs = [
-  "O Estúdio Horizonte nasceu para ajudar pessoas e negócios a avançarem com mais clareza e menos ruído.",
-  "Nossa forma de trabalhar une atenção ao contexto, decisões explicadas e execução responsável.",
+  "A Soma Laboral nasceu da experiência de cuidar de pessoas dentro do ambiente de trabalho, com atividades conduzidas de forma próxima, responsável e adaptada a cada empresa.",
+  "Mais do que cumprir uma programação, o objetivo é criar momentos que façam sentido para os colaboradores e contribuam para uma rotina de trabalho mais saudável e acolhedora.",
 ] as const;

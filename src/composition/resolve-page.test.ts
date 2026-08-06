@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 
 import type { PageSource } from "@/domain/pages";
+import type { SectionContentEntry } from "@/domain/sections";
 import { resolvePage } from "@/composition/resolve-page";
 import { resolvePreset } from "@/presets/resolve-preset";
+import { homePageSource } from "@/site/pages/home";
 import { createHomeContent } from "@/site/pages/home-content";
 
 const expectedCompositions = {
@@ -10,12 +12,9 @@ const expectedCompositions = {
     "site-header:standard",
     "hero:split",
     "services:featured",
-    "portfolio:grid",
     "highlights:cards",
     "about:text",
-    "testimonials:featured",
     "contact:split",
-    "call-to-action:banner",
     "site-footer:standard",
   ],
   commerce: [
@@ -25,7 +24,6 @@ const expectedCompositions = {
     "highlights:inline",
     "about:text",
     "contact:split",
-    "call-to-action:panel",
     "site-footer:standard",
   ],
   professional: [
@@ -33,16 +31,61 @@ const expectedCompositions = {
     "hero:centered",
     "professional-profile:credentials",
     "services:grid",
-    "portfolio:featured",
     "highlights:inline",
-    "testimonials:featured",
     "contact:compact",
-    "call-to-action:panel",
     "site-footer:standard",
   ],
 } as const;
 
+const portfolioContent = {
+  id: "portfolio",
+  type: "portfolio",
+  title: "Soma em ação",
+  items: [
+    {
+      id: "workplace-exercise-session",
+      title: "Ginástica Laboral com a equipe",
+      image: {
+        src: "/images/portfolio/workplace-exercise-session.webp",
+        alt: "Colaboradores participam de uma atividade orientada no trabalho.",
+        width: 1200,
+        height: 800,
+        decorative: false,
+      },
+    },
+  ],
+} as const satisfies SectionContentEntry;
+
 describe("page resolver", () => {
+  it("resolves the approved Soma Laboral composition", () => {
+    const page = resolvePage(homePageSource, resolvePreset("services"));
+
+    expect(page.sections.map((section) => section.type)).toEqual([
+      "site-header",
+      "hero",
+      "services",
+      "highlights",
+      "about",
+      "contact",
+      "site-footer",
+    ]);
+    expect(
+      page.sections.some(
+        (section) =>
+          section.type === "testimonials" || section.type === "call-to-action",
+      ),
+    ).toBe(false);
+
+    const servicesSection = page.sections.find(
+      (section) => section.type === "services",
+    );
+    expect(
+      servicesSection?.type === "services"
+        ? servicesSection.featuredServiceId
+        : undefined,
+    ).toBe("workplace-exercise");
+  });
+
   for (const presetId of ["services", "commerce", "professional"] as const) {
     it(`resolves the ${presetId} preset in the specified order`, () => {
       const source: PageSource = {
@@ -90,7 +133,7 @@ describe("page resolver", () => {
   });
 
   it("validates portfolio collections and featured references", () => {
-    const baseContent = createHomeContent("services");
+    const baseContent = [...createHomeContent("services"), portfolioContent];
 
     expect(() =>
       resolvePage(
@@ -120,7 +163,7 @@ describe("page resolver", () => {
         },
         resolvePreset("services"),
       ),
-    ).toThrow('duplicate portfolio item id "custom-shelving"');
+    ).toThrow('duplicate portfolio item id "workplace-exercise-session"');
 
     expect(() =>
       resolvePage(
@@ -164,13 +207,15 @@ describe("page resolver", () => {
         },
         resolvePreset("services"),
       ),
-    ).toThrow('portfolio item "custom-shelving" requires a title');
+    ).toThrow(
+      'portfolio item "workplace-exercise-session" requires a title',
+    );
   });
 
   it("promotes one referenced portfolio item without duplicating it", () => {
-    const content = createHomeContent("services").map((entry) =>
+    const content = [...createHomeContent("services"), portfolioContent].map((entry) =>
       entry.type === "portfolio"
-        ? { ...entry, featuredPortfolioItemId: "botanical-cakes" }
+        ? { ...entry, featuredPortfolioItemId: "workplace-exercise-session" }
         : entry,
     );
     const page = resolvePage(
@@ -184,10 +229,12 @@ describe("page resolver", () => {
     expect(portfolio?.variant).toBe("featured");
     expect(
       portfolio?.type === "portfolio" ? portfolio.items[0]?.id : undefined,
-    ).toBe("botanical-cakes");
+    ).toBe("workplace-exercise-session");
     expect(
       portfolio?.type === "portfolio"
-        ? portfolio.items.filter((item) => item.id === "botanical-cakes")
+        ? portfolio.items.filter(
+            (item) => item.id === "workplace-exercise-session",
+          )
         : [],
     ).toHaveLength(1);
   });
@@ -198,7 +245,7 @@ describe("page resolver", () => {
         id: "portfolio-grid",
         route: "/",
         title: "Home",
-        content: createHomeContent("services"),
+        content: [...createHomeContent("services"), portfolioContent],
       },
       resolvePreset("services"),
     );
@@ -214,7 +261,7 @@ describe("page resolver", () => {
         id: "portfolio-grid",
         route: "/",
         title: "Home",
-        content: createHomeContent("services"),
+        content: [...createHomeContent("services"), portfolioContent],
       },
       resolvePreset("services"),
     );

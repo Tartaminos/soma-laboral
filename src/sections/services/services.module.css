@@ -2,3 +2,9 @@
   margin-block-start: var(--space-3);
   color: var(--color-text-muted);
 }
+
+@media (min-width: 48rem) {
+  .description {
+    max-width: 42ch;
+  }
+}
