@@ -30,9 +30,17 @@ export interface SocialLink {
   readonly href: string;
 }
 
-export interface ServiceArea {
-  readonly city: string;
-  readonly region: string;
-  readonly country: string;
-  readonly label: string;
-}
+export type ServiceArea =
+  | {
+      readonly type: "city";
+      readonly city: string;
+      readonly region: string;
+      readonly country: string;
+      readonly label: string;
+    }
+  | {
+      readonly type: "country";
+      readonly name: string;
+      readonly countryCode: string;
+      readonly label: string;
+    };

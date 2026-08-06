@@ -95,6 +95,21 @@ export function createStructuredData({
       closes: entry.closes,
     }));
   const socialProfiles = sameAs.map((link) => link.href);
+  const areaServed =
+    serviceArea?.type === "city"
+      ? {
+          "@type": "City",
+          name: serviceArea.city,
+          addressRegion: serviceArea.region,
+          addressCountry: serviceArea.country,
+        }
+      : serviceArea
+        ? {
+            "@type": "Country",
+            name: serviceArea.name,
+            identifier: serviceArea.countryCode,
+          }
+        : undefined;
 
   return {
     "@context": "https://schema.org",
@@ -116,14 +131,7 @@ export function createStructuredData({
           addressCountry: address.country,
         }
       : undefined,
-    areaServed: serviceArea
-      ? {
-          "@type": "City",
-          name: serviceArea.city,
-          addressRegion: serviceArea.region,
-          addressCountry: serviceArea.country,
-        }
-      : undefined,
+    areaServed,
     openingHoursSpecification:
       openingHoursSpecification.length > 0
         ? openingHoursSpecification

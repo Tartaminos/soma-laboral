@@ -65,17 +65,17 @@ describe("ContactSection", () => {
         {...baseProps}
         availabilityText="Segunda a sexta, em horário comercial."
         serviceArea={{
-          city: "Americana",
-          region: "SP",
-          country: "BR",
-          label: "Americana/SP",
+          type: "country",
+          name: "Brasil",
+          countryCode: "BR",
+          label: "Em todo o Brasil",
         }}
         variant="split"
       />,
     );
 
     expect(screen.getByText("Região atendida")).toBeInTheDocument();
-    expect(screen.getByText("Americana/SP")).toBeInTheDocument();
+    expect(screen.getByText("Em todo o Brasil")).toBeInTheDocument();
     expect(
       screen.getByText("Segunda a sexta, em horário comercial."),
     ).toBeInTheDocument();

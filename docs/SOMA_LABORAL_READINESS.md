@@ -13,7 +13,7 @@ estática na Cloudflare Pages.
 - domínio: `https://somalaboral.com.br`;
 - WhatsApp: `+55 19 99746-2703`, normalizado para `5519997462703` nos links;
 - Instagram: `somaginasticalaboral`, exibido somente pelo ícone do contato;
-- região atendida: `Americana/SP`;
+- região atendida: `Em todo o Brasil`;
 - disponibilidade: `Segunda a sexta, em horário comercial.`;
 - logo completo, símbolo recortado e ícones de 16, 32 e 180 pixels derivados
   da marca recebida;

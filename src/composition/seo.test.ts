@@ -61,10 +61,10 @@ describe("SEO helpers", () => {
         },
       ],
       serviceArea: {
-        city: "Americana",
-        region: "SP",
-        country: "BR",
-        label: "Americana/SP",
+        type: "country",
+        name: "Brasil",
+        countryCode: "BR",
+        label: "Em todo o Brasil",
       },
       type: "ProfessionalService",
     });
@@ -73,10 +73,9 @@ describe("SEO helpers", () => {
       telephone: "+55 19 99746-2703",
       sameAs: ["https://www.instagram.com/somaginasticalaboral/"],
       areaServed: {
-        "@type": "City",
-        name: "Americana",
-        addressRegion: "SP",
-        addressCountry: "BR",
+        "@type": "Country",
+        name: "Brasil",
+        identifier: "BR",
       },
     });
     expect(JSON.stringify(data)).not.toContain("OpeningHoursSpecification");

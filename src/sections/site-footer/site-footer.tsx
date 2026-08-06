@@ -47,8 +47,14 @@ export function SiteFooterSection({
             © {new Date().getFullYear()} {businessName}. Todos os direitos reservados.
           </p>
           {attribution ? (
-            <a className={styles.attribution} href={attribution.href}>
+            <a
+              className={styles.attribution}
+              href={attribution.href}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               {attribution.label}
+              <span className={styles.newWindow}> (abre em nova aba)</span>
             </a>
           ) : null}
         </div>

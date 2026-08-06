@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 import type { PageDefinition } from "@/domain/pages";
 import { renderSection } from "@/composition/section-catalog";
 
@@ -13,7 +15,7 @@ export function PageComposer({ page }: PageComposerProps) {
       </a>
       {page.sections.map((section) =>
         section.type === "site-header" ? (
-          <div key={section.id}>{renderSection(section)}</div>
+          <Fragment key={section.id}>{renderSection(section)}</Fragment>
         ) : null,
       )}
       <main id="main-content">

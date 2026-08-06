@@ -59,6 +59,17 @@
   text-underline-offset: 0.25em;
 }
 
+.newWindow {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 @media (min-width: 48rem) {
   .content {
     grid-template-columns: minmax(0, 2fr) minmax(12rem, 1fr);

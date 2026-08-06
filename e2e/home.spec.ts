@@ -29,7 +29,7 @@ test("renders the static home, navigation and structured data", async ({
   await expect(
     page.getByRole("link", { name: "Abrir Instagram da Soma Laboral" }),
   ).toHaveCount(1);
-  await expect(page.getByText("Americana/SP", { exact: true })).toBeVisible();
+  await expect(page.getByText("Em todo o Brasil", { exact: true })).toBeVisible();
   await expect(
     page.getByText("Segunda a sexta, em horário comercial."),
   ).toBeVisible();
@@ -39,7 +39,27 @@ test("renders the static home, navigation and structured data", async ({
   await expect(
     page.getByRole("link", { name: "Desenvolvido por Contestech" }),
   ).toHaveAttribute("href", "https://contestech.com.br/");
+  await expect(
+    page.getByRole("link", { name: "Desenvolvido por Contestech" }),
+  ).toHaveAttribute("target", "_blank");
+  await expect(
+    page.getByRole("link", { name: "Desenvolvido por Contestech" }),
+  ).toHaveAttribute("rel", "noopener noreferrer");
   expect(runtimeErrors).toEqual([]);
+});
+
+test("header remains visible while the page scrolls", async ({ page }) => {
+  await page.goto("/");
+  const header = page.locator("header");
+
+  await expect(header).toHaveCSS("position", "sticky");
+  await page.locator("#contact").scrollIntoViewIfNeeded();
+  await expect(header).toBeInViewport();
+  const headerTop = await header.evaluate(
+    (element) => element.getBoundingClientRect().top,
+  );
+  expect(headerTop).toBeGreaterThanOrEqual(-1);
+  expect(headerTop).toBeLessThanOrEqual(1);
 });
 
 test("uses decorative hero video after the text and honors reduced motion", async ({

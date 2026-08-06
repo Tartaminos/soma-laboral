@@ -27,10 +27,10 @@ export const socialLinks = [
 ] as const satisfies readonly SocialLink[];
 
 export const serviceArea = {
-  city: "Americana",
-  region: "SP",
-  country: "BR",
-  label: "Americana/SP",
+  type: "country",
+  name: "Brasil",
+  countryCode: "BR",
+  label: "Em todo o Brasil",
 } as const satisfies ServiceArea;
 
 export const availabilityText = "Segunda a sexta, em horário comercial.";
