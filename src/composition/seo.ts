@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 
-import type { Address, OpeningHours, SocialLink } from "@/domain/business";
+import type {
+  Address,
+  OpeningHours,
+  ServiceArea,
+  SocialLink,
+} from "@/domain/business";
 import type { PageDefinition } from "@/domain/pages";
 import type { SeoConfiguration } from "@/domain/seo";
 import type { BusinessIdentity, DeployEnvironment } from "@/domain/site";
@@ -66,6 +71,7 @@ interface StructuredDataInput {
   readonly business: BusinessIdentity;
   readonly logoPath?: `/${string}`;
   readonly openingHours: readonly OpeningHours[];
+  readonly serviceArea?: ServiceArea;
   readonly sameAs: readonly SocialLink[];
   readonly type: SeoConfiguration["structuredDataType"];
 }
@@ -76,6 +82,7 @@ export function createStructuredData({
   business,
   logoPath,
   openingHours,
+  serviceArea,
   sameAs,
   type,
 }: StructuredDataInput) {
@@ -107,6 +114,14 @@ export function createStructuredData({
           addressRegion: address.region,
           postalCode: address.postalCode,
           addressCountry: address.country,
+        }
+      : undefined,
+    areaServed: serviceArea
+      ? {
+          "@type": "City",
+          name: serviceArea.city,
+          addressRegion: serviceArea.region,
+          addressCountry: serviceArea.country,
         }
       : undefined,
     openingHoursSpecification:

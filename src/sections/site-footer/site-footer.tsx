@@ -6,6 +6,7 @@ import type { SiteFooterSection as SiteFooterSectionProps } from "@/domain/secti
 import styles from "./site-footer.module.css";
 
 export function SiteFooterSection({
+  attribution,
   businessName,
   channels,
   description,
@@ -41,9 +42,16 @@ export function SiteFooterSection({
             </address>
           ) : null}
         </div>
-        <p className={styles.legal}>
-          © {new Date().getFullYear()} {businessName}. Todos os direitos reservados.
-        </p>
+        <div className={styles.legal}>
+          <p>
+            © {new Date().getFullYear()} {businessName}. Todos os direitos reservados.
+          </p>
+          {attribution ? (
+            <a className={styles.attribution} href={attribution.href}>
+              {attribution.label}
+            </a>
+          ) : null}
+        </div>
       </Container>
     </footer>
   );

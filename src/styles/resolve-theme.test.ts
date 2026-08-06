@@ -8,6 +8,6 @@ describe("theme resolver", () => {
     const css = resolveThemeCss(defaultTheme);
     expect(css).toContain("--color-background:#f4f5ef");
     expect(css).toContain("--color-focus:#9e2c36");
-    expect(css).toContain("--content-width:72rem");
+    expect(css).toContain("--content-width:76rem");
   });
 });

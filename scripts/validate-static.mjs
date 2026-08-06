@@ -10,6 +10,14 @@ const requiredFiles = [
   "demo/services/index.html",
   "demo/commerce/index.html",
   "demo/professional/index.html",
+  "brand/soma-laboral-logo.webp",
+  "brand/soma-laboral-mark.webp",
+  "images/hero/soma-laboral-hero.mp4",
+  "images/hero/soma-laboral-hero-poster.webp",
+  "images/social/soma-laboral-og.webp",
+  "images/portfolio/ginastica-laboral-equipe-01.webp",
+  "images/portfolio/ginastica-laboral-equipe-02.webp",
+  "images/portfolio/ginastica-laboral-equipe-03.webp",
 ];
 
 for (const relativePath of requiredFiles) {
@@ -25,9 +33,25 @@ for (const expected of [
   'type="application/ld+json"',
   'id="main-content"',
   "Soma Laboral",
+  "https://somalaboral.com.br/",
+  "https://wa.me/5519997462703",
+  "https://www.instagram.com/somaginasticalaboral/",
+  "Desenvolvido por Contestech",
+  'areaServed',
 ]) {
   if (!html.includes(expected)) {
     throw new Error(`Static home does not include ${expected}.`);
+  }
+}
+
+for (const forbidden of [
+  "https://example.com",
+  "OpeningHoursSpecification",
+  "PostalAddress",
+  "+55 19 99746-2703</a>",
+]) {
+  if (html.includes(forbidden)) {
+    throw new Error(`Static home must not include ${forbidden}.`);
   }
 }
 

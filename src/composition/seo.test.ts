@@ -41,4 +41,45 @@ describe("SEO helpers", () => {
     expect(serialized).not.toContain("address");
     expect(serialized).not.toContain("openingHoursSpecification");
   });
+
+  it("publishes confirmed contact and service area without invented hours", () => {
+    const data = createStructuredData({
+      baseUrl: "https://somalaboral.com.br",
+      business: {
+        id: "soma-laboral",
+        name: "Soma Laboral",
+        shortDescription: "Ginástica Laboral, Quick Massage e SIPAT.",
+        phone: "+55 19 99746-2703",
+      },
+      logoPath: "/brand/soma-laboral-logo.webp",
+      openingHours: [],
+      sameAs: [
+        {
+          id: "instagram",
+          label: "Abrir Instagram da Soma Laboral",
+          href: "https://www.instagram.com/somaginasticalaboral/",
+        },
+      ],
+      serviceArea: {
+        city: "Americana",
+        region: "SP",
+        country: "BR",
+        label: "Americana/SP",
+      },
+      type: "ProfessionalService",
+    });
+
+    expect(data).toMatchObject({
+      telephone: "+55 19 99746-2703",
+      sameAs: ["https://www.instagram.com/somaginasticalaboral/"],
+      areaServed: {
+        "@type": "City",
+        name: "Americana",
+        addressRegion: "SP",
+        addressCountry: "BR",
+      },
+    });
+    expect(JSON.stringify(data)).not.toContain("OpeningHoursSpecification");
+    expect(JSON.stringify(data)).not.toContain("PostalAddress");
+  });
 });

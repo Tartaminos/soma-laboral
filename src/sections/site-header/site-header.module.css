@@ -30,13 +30,13 @@
 }
 
 .brand span {
-  overflow-wrap: anywhere;
+  white-space: nowrap;
 }
 
 .brand img {
-  width: 2.5rem;
+  width: 3rem;
   flex: none;
-  border-radius: 0.65rem;
+  border-radius: 50%;
 }
 
 .navigationList {

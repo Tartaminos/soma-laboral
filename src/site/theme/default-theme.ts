@@ -26,6 +26,6 @@ export const defaultTheme = {
     radiusSmall: "0.4rem",
     radiusLarge: "1rem",
     shadow: "0 1rem 2.5rem rgb(37 21 64 / 0.08)",
-    contentWidth: "72rem",
+    contentWidth: "76rem",
   },
 } as const satisfies ThemeDefinition;

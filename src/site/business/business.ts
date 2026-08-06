@@ -1,8 +1,12 @@
-import type { ContactChannel, OpeningHours, SocialLink } from "@/domain/business";
+import type {
+  ContactChannel,
+  OpeningHours,
+  ServiceArea,
+  SocialLink,
+} from "@/domain/business";
 import type { BusinessIdentity } from "@/domain/site";
 
-// O número será publicado aqui somente depois da confirmação do WhatsApp oficial.
-export const whatsappPhone: string | undefined = undefined;
+export const whatsappPhone = "+55 19 99746-2703";
 
 export const business = {
   id: "soma-laboral",
@@ -12,7 +16,21 @@ export const business = {
   phone: whatsappPhone,
 } as const satisfies BusinessIdentity;
 
-// Contato, região e horários permanecem ausentes até a confirmação dos dados oficiais.
 export const contactChannels = [] as const satisfies readonly ContactChannel[];
 export const openingHours = [] as const satisfies readonly OpeningHours[];
-export const socialLinks = [] as const satisfies readonly SocialLink[];
+export const socialLinks = [
+  {
+    id: "instagram",
+    href: "https://www.instagram.com/somaginasticalaboral/",
+    label: "Abrir Instagram da Soma Laboral",
+  },
+] as const satisfies readonly SocialLink[];
+
+export const serviceArea = {
+  city: "Americana",
+  region: "SP",
+  country: "BR",
+  label: "Americana/SP",
+} as const satisfies ServiceArea;
+
+export const availabilityText = "Segunda a sexta, em horário comercial.";

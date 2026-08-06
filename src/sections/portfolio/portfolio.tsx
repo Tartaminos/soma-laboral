@@ -18,32 +18,38 @@ export function PortfolioSection({
   variant,
 }: PortfolioSectionProps) {
   return (
-    <SectionShell id={id}>
+    <SectionShell id={id} surface={variant === "mosaic" ? "alternate" : "default"}>
       <Stack gap="large">
         <SectionHeading description={description} title={title} />
         <ul
           className={`${styles.portfolioList} ${
             variant === "featured" ? styles.featuredList : ""
-          }`}
+          } ${variant === "mosaic" ? styles.mosaicList : ""}`}
         >
           {items.map((item) => {
             const isFeatured =
               variant === "featured" && item.id === featuredPortfolioItemId;
+            const figure = (
+              <figure className={styles.figure}>
+                <ContentImage image={item.image} />
+                <figcaption>
+                  {item.category ? (
+                    <p className={shared.meta}>{item.category}</p>
+                  ) : null}
+                  <h3 className={shared.cardTitle}>{item.title}</h3>
+                  {item.description ? <p>{item.description}</p> : null}
+                </figcaption>
+              </figure>
+            );
 
             return (
-              <li className={isFeatured ? styles.featuredItem : undefined} key={item.id}>
-                <Surface featured={isFeatured}>
-                  <figure className={styles.figure}>
-                    <ContentImage image={item.image} />
-                    <figcaption>
-                      {item.category ? (
-                        <p className={shared.meta}>{item.category}</p>
-                      ) : null}
-                      <h3 className={shared.cardTitle}>{item.title}</h3>
-                      {item.description ? <p>{item.description}</p> : null}
-                    </figcaption>
-                  </figure>
-                </Surface>
+              <li
+                className={isFeatured ? styles.featuredItem : undefined}
+                key={item.id}
+              >
+                {variant === "mosaic" ? figure : (
+                  <Surface featured={isFeatured}>{figure}</Surface>
+                )}
               </li>
             );
           })}

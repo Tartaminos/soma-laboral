@@ -2,6 +2,7 @@ import type {
   Address,
   ContactChannel,
   OpeningHours,
+  ServiceArea,
   SocialLink,
 } from "@/domain/business";
 import type {
@@ -14,7 +15,7 @@ import type {
   Service,
   Testimonial,
 } from "@/domain/content";
-import type { ImageAsset } from "@/domain/assets";
+import type { HeroMedia, ImageAsset } from "@/domain/assets";
 
 interface SectionBase {
   readonly id: string;
@@ -37,7 +38,7 @@ export interface HeroSection extends SectionBase {
   readonly title: string;
   readonly description: string;
   readonly actions: readonly Action[];
-  readonly image?: ImageAsset;
+  readonly media?: HeroMedia;
 }
 
 export interface ServicesSection extends SectionBase {
@@ -60,7 +61,7 @@ export interface ProductShowcaseSection extends SectionBase {
 
 export interface PortfolioSection extends SectionBase {
   readonly type: "portfolio";
-  readonly variant: "grid" | "featured";
+  readonly variant: "grid" | "featured" | "mosaic";
   readonly title: string;
   readonly description?: string;
   readonly items: readonly PortfolioItem[];
@@ -108,6 +109,8 @@ export interface ContactSection extends SectionBase {
   readonly socialLinks?: readonly SocialLink[];
   readonly address?: Address;
   readonly openingHours: readonly OpeningHours[];
+  readonly serviceArea?: ServiceArea;
+  readonly availabilityText?: string;
 }
 
 export interface CallToActionSection extends SectionBase {
@@ -125,6 +128,10 @@ export interface SiteFooterSection extends SectionBase {
   readonly description?: string;
   readonly navigation: readonly NavigationItem[];
   readonly channels: readonly ContactChannel[];
+  readonly attribution?: {
+    readonly label: string;
+    readonly href: `https://${string}`;
+  };
 }
 
 export type PageSection =

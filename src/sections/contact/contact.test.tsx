@@ -58,4 +58,27 @@ describe("ContactSection", () => {
       "true",
     );
   });
+
+  it("presents a service area and textual availability without an address", () => {
+    const { container } = render(
+      <ContactSection
+        {...baseProps}
+        availabilityText="Segunda a sexta, em horário comercial."
+        serviceArea={{
+          city: "Americana",
+          region: "SP",
+          country: "BR",
+          label: "Americana/SP",
+        }}
+        variant="split"
+      />,
+    );
+
+    expect(screen.getByText("Região atendida")).toBeInTheDocument();
+    expect(screen.getByText("Americana/SP")).toBeInTheDocument();
+    expect(
+      screen.getByText("Segunda a sexta, em horário comercial."),
+    ).toBeInTheDocument();
+    expect(container.querySelector("address")).not.toBeInTheDocument();
+  });
 });

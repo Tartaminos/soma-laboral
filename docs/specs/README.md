@@ -21,7 +21,7 @@ Em caso de divergência, aplicar esta ordem:
 | Ordem | Spec | Status da implementação |
 |---:|---|---|
 | 18 | [Implementação da SPA da Soma Laboral](./18-soma-laboral-client-implementation.md) | Concluída |
-| 19 | [Ativação dos assets finais, hero com vídeo e revisão geral de UI](./19-production-assets-hero-video-ui-review.md) | Pendente |
+| 19 | [Ativação dos assets finais, hero com vídeo e revisão geral de UI](./19-production-assets-hero-video-ui-review.md) | Concluída |
 
 ## Regra de execução
 
@@ -34,5 +34,5 @@ Em caso de divergência, aplicar esta ordem:
 ## Status atual
 
 - spec 18: implementação concluída;
-- spec 19: criada e aprovada para implementação;
-- implementação da spec 19: pendente.
+- spec 19: implementação concluída e validada;
+- dados oficiais, assets finais, hero com vídeo, portfólio e revisão de UI: ativos.

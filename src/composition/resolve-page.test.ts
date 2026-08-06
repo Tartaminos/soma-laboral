@@ -12,6 +12,7 @@ const expectedCompositions = {
     "site-header:standard",
     "hero:split",
     "services:featured",
+    "portfolio:grid",
     "highlights:cards",
     "about:text",
     "contact:split",
@@ -65,6 +66,7 @@ describe("page resolver", () => {
       "hero",
       "services",
       "highlights",
+      "portfolio",
       "about",
       "contact",
       "site-footer",
@@ -84,6 +86,16 @@ describe("page resolver", () => {
         ? servicesSection.featuredServiceId
         : undefined,
     ).toBe("workplace-exercise");
+
+    const portfolioSection = page.sections.find(
+      (section) => section.type === "portfolio",
+    );
+    expect(portfolioSection?.variant).toBe("mosaic");
+    expect(
+      portfolioSection?.type === "portfolio"
+        ? portfolioSection.items
+        : [],
+    ).toHaveLength(3);
   });
 
   for (const presetId of ["services", "commerce", "professional"] as const) {
