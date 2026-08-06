@@ -29,3 +29,10 @@ export interface SocialLink {
   readonly label: string;
   readonly href: string;
 }
+
+export interface ServiceArea {
+  readonly city: string;
+  readonly region: string;
+  readonly country: string;
+  readonly label: string;
+}

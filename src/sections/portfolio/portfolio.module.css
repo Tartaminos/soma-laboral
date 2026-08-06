@@ -13,6 +13,35 @@
   min-width: 0;
 }
 
+.mosaicList {
+  gap: var(--space-3);
+}
+
+.mosaicList > li {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-surface);
+}
+
+.mosaicList .figure {
+  height: 100%;
+  gap: 0;
+}
+
+.mosaicList img {
+  border-radius: 0;
+}
+
+.mosaicList figcaption {
+  padding: var(--space-3);
+}
+
+.mosaicList figcaption p {
+  color: var(--color-text-muted);
+}
+
 .action {
   align-self: flex-start;
 }
@@ -38,5 +67,36 @@
 
   .featuredItem {
     grid-column: span 2;
+  }
+
+  .mosaicList {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  .mosaicList > li:first-child {
+    grid-row: 1 / span 2;
+  }
+
+  .mosaicList > li:first-child .figure {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  .mosaicList > li:first-child img {
+    height: 100%;
+    min-height: 30rem;
+    object-fit: cover;
+  }
+
+  .mosaicList > li:not(:first-child) .figure {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(11rem, 0.65fr);
+    align-items: stretch;
+  }
+
+  .mosaicList > li:not(:first-child) img {
+    height: 100%;
+    object-fit: cover;
   }
 }

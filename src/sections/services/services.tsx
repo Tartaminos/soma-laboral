@@ -18,7 +18,7 @@ export function ServicesSection({
     <SectionShell id={id} surface="alternate">
       <Stack gap="large">
         <SectionHeading description={description} title={title} />
-        <ul className={shared.gridList}>
+        <ul className={styles.serviceList}>
           {items.map((service) => (
             <li key={service.id}>
               <Surface

@@ -1,11 +1,14 @@
 import type { NavigationItem } from "@/domain/content";
 import type { PageSection, SectionContentEntry } from "@/domain/sections";
 import type { PresetId } from "@/domain/site";
-import { brandLogo } from "@/site/assets/brand";
+import { brandMark } from "@/site/assets/brand";
+import { heroVideo } from "@/site/assets/hero";
 import {
+  availabilityText,
   business,
   contactChannels,
   openingHours,
+  serviceArea,
   socialLinks,
 } from "@/site/business/business";
 import { primaryContactAction } from "@/site/content/actions";
@@ -46,18 +49,19 @@ export function createSomaHomeSections(): readonly PageSection[] {
       type: "site-header",
       variant: "standard",
       businessName: business.name,
-      logo: brandLogo,
+      logo: brandMark,
       navigation: primaryNavigation,
     },
     {
       id: "home",
       type: "hero",
-      variant: "centered",
+      variant: "split",
       eyebrow: "Cuidado com quem faz a empresa acontecer",
       title: "Bem-estar no trabalho começa com atenção às pessoas.",
       description:
         "A Soma Laboral leva Ginástica Laboral, Quick Massage e ações para SIPAT até a sua empresa, com atividades pensadas para a rotina e as necessidades de cada equipe.",
       actions: heroActions,
+      media: { type: "video", asset: heroVideo },
     },
     {
       id: "services",
@@ -73,7 +77,7 @@ export function createSomaHomeSections(): readonly PageSection[] {
     {
       id: "how-we-work",
       type: "highlights",
-      variant: "cards",
+      variant: "inline",
       isNavigable: true,
       title: "Um atendimento que olha para a equipe como um todo",
       items: highlights,
@@ -83,7 +87,7 @@ export function createSomaHomeSections(): readonly PageSection[] {
           {
             id: "portfolio",
             type: "portfolio" as const,
-            variant: "grid" as const,
+            variant: "mosaic" as const,
             isNavigable: true,
             title: "Soma em ação",
             description: "Um pouco do trabalho realizado junto às equipes.",
@@ -101,7 +105,7 @@ export function createSomaHomeSections(): readonly PageSection[] {
     {
       id: "contact",
       type: "contact",
-      variant: "compact",
+      variant: "split",
       isNavigable: true,
       title: "Vamos entender a rotina da sua empresa",
       description:
@@ -110,6 +114,8 @@ export function createSomaHomeSections(): readonly PageSection[] {
       channels: contactChannels,
       socialLinks,
       openingHours,
+      serviceArea,
+      availabilityText,
     },
     {
       id: "footer",
@@ -119,6 +125,10 @@ export function createSomaHomeSections(): readonly PageSection[] {
       description: "Ginástica Laboral, Quick Massage e SIPAT",
       navigation: primaryNavigation,
       channels: [],
+      attribution: {
+        label: "Desenvolvido por Contestech",
+        href: "https://contestech.com.br/",
+      },
     },
   ];
 }
@@ -129,7 +139,7 @@ function buildSharedContent(navigation: readonly NavigationItem[]) {
       id: "header",
       type: "site-header",
       businessName: business.name,
-      logo: brandLogo,
+      logo: brandMark,
       navigation,
     },
     hero: {
@@ -162,6 +172,8 @@ function buildSharedContent(navigation: readonly NavigationItem[]) {
       channels: contactChannels,
       socialLinks,
       openingHours,
+      serviceArea,
+      availabilityText,
     },
     footer: {
       id: "footer",
@@ -186,7 +198,11 @@ export function createHomeContent(
           label: "Como trabalhamos",
           href: "#highlights",
         },
-        { id: "about-link", label: "Sobre", href: "#about" },
+        {
+          id: "portfolio-link",
+          label: "Soma em ação",
+          href: "#portfolio",
+        },
         { id: "contact-link", label: "Contato", href: "#contact" },
       ] as const satisfies readonly NavigationItem[];
       const shared = buildSharedContent(navigation);
@@ -254,7 +270,12 @@ export function createHomeContent(
       const shared = buildSharedContent(navigation);
       return [
         shared.header,
-        { ...shared.hero, image: professional.image },
+        {
+          ...shared.hero,
+          media: professional.image
+            ? { type: "image" as const, asset: professional.image }
+            : undefined,
+        },
         {
           id: "profile",
           type: "professional-profile",

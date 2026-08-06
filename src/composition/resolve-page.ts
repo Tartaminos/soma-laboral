@@ -133,7 +133,7 @@ function resolveSection(
       return {
         ...content,
         variant:
-          blueprint.variant === "split" || content.image ? blueprint.variant : "centered",
+          blueprint.variant === "split" || content.media ? blueprint.variant : "centered",
         isNavigable: blueprint.isNavigable,
       };
     case "services":

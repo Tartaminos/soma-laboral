@@ -81,7 +81,20 @@ test("switches presets with links, closes on Escape and fits at 320px", async ({
   expect(hasOverflow).toBe(false);
 });
 
-for (const presetId of ["services", "commerce", "professional"] as const) {
+test("services demo includes the authorized Soma Laboral portfolio", async ({
+  page,
+}) => {
+  await page.goto("/demo/services/");
+
+  await expect(page.locator("#portfolio figure")).toHaveCount(3);
+  await expect(
+    page
+      .getByRole("navigation", { name: "Navegação do rodapé" })
+      .getByRole("link", { name: "Soma em ação" }),
+  ).toBeVisible();
+});
+
+for (const presetId of ["commerce", "professional"] as const) {
   test(`${presetId} omits the portfolio while authorized media is pending`, async ({
     page,
   }) => {

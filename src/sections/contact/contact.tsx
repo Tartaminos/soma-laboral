@@ -14,9 +14,11 @@ export function ContactSection({
   description,
   id,
   openingHours,
+  serviceArea,
   socialLinks = [],
   title,
   variant,
+  availabilityText,
 }: ContactSectionProps) {
   const hasDetails = channels.length > 0 || Boolean(address);
   const details = (
@@ -61,44 +63,63 @@ export function ContactSection({
     </div>
   ) : null;
 
+  const actions = action || socialLinks.length > 0 ? (
+    <div className={styles.actions}>
+      {action ? <ActionLink action={action} /> : null}
+      {socialLinks.length > 0 ? (
+        <ul className={styles.socialList}>
+          {socialLinks.map((socialLink) => (
+            <li key={socialLink.id}>
+              <a
+                aria-label={socialLink.label}
+                className={styles.socialLink}
+                href={socialLink.href}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <SocialIcon id={socialLink.id} />
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  ) : null;
+
+  const operationalInformation = serviceArea || availabilityText ? (
+    <dl className={styles.operationalInformation}>
+      {serviceArea ? (
+        <div>
+          <dt>Região atendida</dt>
+          <dd>{serviceArea.label}</dd>
+        </div>
+      ) : null}
+      {availabilityText ? (
+        <div>
+          <dt>Disponibilidade</dt>
+          <dd>{availabilityText}</dd>
+        </div>
+      ) : null}
+    </dl>
+  ) : null;
+
+  const secondaryContent = operationalInformation || hasDetails || hours ? (
+    <Stack className={styles.details} gap="medium">
+      {operationalInformation}
+      {hasDetails ? details : null}
+      {hours}
+    </Stack>
+  ) : null;
+
   return (
     <SectionShell id={id} surface="alternate">
-      <Stack className={styles.content} gap="large">
-        <SectionHeading description={description} title={title} />
-        {action || socialLinks.length > 0 ? (
-          <div className={styles.actions}>
-            {action ? <ActionLink action={action} /> : null}
-            {socialLinks.length > 0 ? (
-              <ul className={styles.socialList}>
-                {socialLinks.map((socialLink) => (
-                  <li key={socialLink.id}>
-                    <a
-                      aria-label={socialLink.label}
-                      className={styles.socialLink}
-                      href={socialLink.href}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <SocialIcon id={socialLink.id} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-          </div>
-        ) : null}
-        {variant === "split" && hasDetails && hours ? (
-          <div className={shared.split}>
-            {details}
-            {hours}
-          </div>
-        ) : hasDetails || hours ? (
-          <Stack gap="medium">
-            {hasDetails ? details : null}
-            {hours}
-          </Stack>
-        ) : null}
-      </Stack>
+      <div className={variant === "split" ? shared.split : styles.content}>
+        <Stack gap="large">
+          <SectionHeading description={description} title={title} />
+          {actions}
+        </Stack>
+        {secondaryContent}
+      </div>
     </SectionShell>
   );
 }

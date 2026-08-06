@@ -1,15 +1,8 @@
 import type { Action } from "@/domain/content";
 import { whatsappPhone } from "@/site/business/business";
 
-export const whatsappMessage = `Olá! Gostaria de conversar sobre os serviços da Soma Laboral.
-
-Empresa:
-Cidade:
-Número aproximado de colaboradores:
-Setores a serem atendidos:
-Horários disponíveis:
-Frequência desejada:
-Serviço de interesse:`;
+export const whatsappMessage =
+  "Olá! Gostaria de saber mais sobre os serviços da Soma Laboral. Há disponibilidade para atendimento?";
 
 export function createWhatsAppAction(phone: string): Action {
   const digits = phone.replace(/\D/g, "");
@@ -26,6 +19,4 @@ export function createWhatsAppAction(phone: string): Action {
   };
 }
 
-export const primaryContactAction = whatsappPhone
-  ? createWhatsAppAction(whatsappPhone)
-  : undefined;
+export const primaryContactAction = createWhatsAppAction(whatsappPhone);

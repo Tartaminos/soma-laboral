@@ -89,4 +89,14 @@ describe("portfolio section", () => {
     expect(within(container).getAllByRole("listitem")).toHaveLength(1);
     expect(container.querySelectorAll("figure")).toHaveLength(1);
   });
+
+  it("renders the mosaic as semantic figures without controls", () => {
+    const { container } = render(
+      <PortfolioSection {...portfolioSection} variant="mosaic" />,
+    );
+
+    expect(container.querySelectorAll("figure")).toHaveLength(2);
+    expect(container.querySelector("button")).not.toBeInTheDocument();
+    expect(container.querySelector("dialog")).not.toBeInTheDocument();
+  });
 });

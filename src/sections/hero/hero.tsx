@@ -1,14 +1,10 @@
-import {
-  Cluster,
-  Grid,
-  SectionShell,
-  Stack,
-} from "@/components/layout/layout";
+import { Cluster, SectionShell, Stack } from "@/components/layout/layout";
 import { ActionLink } from "@/components/ui/action-link";
 import { ContentImage } from "@/components/ui/content-image";
 import { Heading, Text } from "@/components/ui/typography";
 import type { HeroSection as HeroSectionProps } from "@/domain/sections";
 
+import { HeroVideo } from "./hero-video";
 import shared from "@/sections/shared/sections.module.css";
 import styles from "./hero.module.css";
 
@@ -17,7 +13,7 @@ export function HeroSection({
   description,
   eyebrow,
   id,
-  image,
+  media,
   title,
   variant,
 }: HeroSectionProps) {
@@ -44,11 +40,17 @@ export function HeroSection({
 
   return (
     <SectionShell className={styles.hero} id={id}>
-      {variant === "split" && image ? (
-        <Grid gap="large" minimum="wide">
+      {variant === "split" && media ? (
+        <div className={styles.layout}>
           {content}
-          <ContentImage image={image} />
-        </Grid>
+          <div className={styles.media}>
+            {media.type === "video" ? (
+              <HeroVideo asset={media.asset} />
+            ) : (
+              <ContentImage image={media.asset} />
+            )}
+          </div>
+        </div>
       ) : (
         content
       )}
