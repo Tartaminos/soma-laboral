@@ -34,7 +34,8 @@ test("renders the static home, navigation and structured data", async ({
     page.getByText("Segunda a sexta, em horário comercial."),
   ).toBeVisible();
   await expect(page.getByText("+55 19 99746-2703")).toHaveCount(0);
-  await expect(page.locator("#portfolio figure")).toHaveCount(3);
+  await expect(page.locator("#portfolio figure")).toHaveCount(6);
+  await expect(page.getByText("Quick Massage no trabalho")).toBeVisible();
   await expect(
     page.getByRole("link", { name: "Desenvolvido por Contestech" }),
   ).toHaveAttribute("href", "https://contestech.com.br/");

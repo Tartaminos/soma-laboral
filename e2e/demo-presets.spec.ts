@@ -86,7 +86,7 @@ test("services demo includes the authorized Soma Laboral portfolio", async ({
 }) => {
   await page.goto("/demo/services/");
 
-  await expect(page.locator("#portfolio figure")).toHaveCount(3);
+  await expect(page.locator("#portfolio figure")).toHaveCount(6);
   await expect(
     page
       .getByRole("navigation", { name: "Navegação do rodapé" })

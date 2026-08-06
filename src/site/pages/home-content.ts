@@ -90,7 +90,8 @@ export function createSomaHomeSections(): readonly PageSection[] {
             variant: "mosaic" as const,
             isNavigable: true,
             title: "Soma em ação",
-            description: "Um pouco do trabalho realizado junto às equipes.",
+            description:
+              "Ginástica Laboral e Quick Massage realizadas junto às equipes.",
             items: portfolioItems,
           },
         ]
@@ -224,7 +225,8 @@ export function createHomeContent(
                 id: "portfolio",
                 type: "portfolio" as const,
                 title: "Soma em ação",
-                description: "Um pouco do trabalho realizado junto às equipes.",
+                description:
+                  "Ginástica Laboral e Quick Massage realizadas junto às equipes.",
                 items: portfolioItems,
               },
             ]

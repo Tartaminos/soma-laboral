@@ -95,7 +95,7 @@ describe("page resolver", () => {
       portfolioSection?.type === "portfolio"
         ? portfolioSection.items
         : [],
-    ).toHaveLength(3);
+    ).toHaveLength(6);
   });
 
   for (const presetId of ["services", "commerce", "professional"] as const) {

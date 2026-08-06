@@ -18,6 +18,9 @@ const requiredFiles = [
   "images/portfolio/ginastica-laboral-equipe-01.webp",
   "images/portfolio/ginastica-laboral-equipe-02.webp",
   "images/portfolio/ginastica-laboral-equipe-03.webp",
+  "images/portfolio/quick-massage-atendimento-01.webp",
+  "images/portfolio/quick-massage-atendimento-02.webp",
+  "images/portfolio/quick-massage-cadeira.webp",
 ];
 
 for (const relativePath of requiredFiles) {

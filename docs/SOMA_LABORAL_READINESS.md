@@ -20,7 +20,8 @@ estática na Cloudflare Pages.
 - vídeo do hero em MP4/H.264, 1280 × 720, 30 FPS, 15,67 segundos, sem áudio e
   com 4,22 MB;
 - poster do hero em WebP, 1280 × 720;
-- três fotografias WebP na seção “Soma em ação”;
+- seis fotografias WebP na seção “Soma em ação”, com três registros de
+  Ginástica Laboral e três de Quick Massage;
 - imagem Open Graph WebP, 1200 × 630.
 
 Os derivados WebP não contêm EXIF, GPS nem perfil ICC. Os arquivos originais
